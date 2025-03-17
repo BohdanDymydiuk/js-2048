@@ -129,9 +129,9 @@ class Game {
 
         cells.forEach((row, rowIndex) => {
           if (
-            rowIndex < cells.length - 1 &&
-            cells[rowIndex][numIndex] &&
-            cells[rowIndex + 1][numIndex] === cells[rowIndex][numIndex]
+            rowIndex < cells.length - 1
+            && cells[rowIndex][numIndex]
+            && cells[rowIndex + 1][numIndex] === cells[rowIndex][numIndex]
           ) {
             cells[rowIndex][numIndex] *= 2;
             cells[rowIndex + 1][numIndex] = 0;
@@ -150,8 +150,8 @@ class Game {
             }
 
             if (
-              cells[i - 1][numIndex] === cells[i][numIndex] &&
-              mergers < MERGERS_LIMIT - 1
+              cells[i - 1][numIndex] === cells[i][numIndex]
+              && mergers < MERGERS_LIMIT - 1
             ) {
               cells[i - 1][numIndex] *= 2;
               cells[i][numIndex] = 0;
@@ -181,9 +181,9 @@ class Game {
 
         for (let i = cells.length - 1; i >= 0; i--) {
           if (
-            i > 0 &&
-            cells[i][numIndex] &&
-            cells[i - 1][numIndex] === cells[i][numIndex]
+            i > 0
+            && cells[i][numIndex]
+            && cells[i - 1][numIndex] === cells[i][numIndex]
           ) {
             cells[i][numIndex] *= 2;
             cells[i - 1][numIndex] = 0;
@@ -202,8 +202,8 @@ class Game {
             }
 
             if (
-              cells[i + 1][numIndex] === cells[i][numIndex] &&
-              mergers < MERGERS_LIMIT - 1
+              cells[i + 1][numIndex] === cells[i][numIndex]
+              && mergers < MERGERS_LIMIT - 1
             ) {
               cells[i + 1][numIndex] *= 2;
               cells[i][numIndex] = 0;
@@ -250,10 +250,10 @@ class Game {
     const checker = this.cells.some((row, rowIndex) =>
       row.some((cell, cellIndex) => {
         if (
-          (rowIndex < this.cells.length - 1 &&
-            (cell === row[cellIndex + 1] ||
-              cell === this.cells[rowIndex + 1][cellIndex])) ||
-          (rowIndex === this.cells.length - 1 && cell === row[cellIndex + 1])
+          (rowIndex < this.cells.length - 1
+            && (cell === row[cellIndex + 1]
+              || cell === this.cells[rowIndex + 1][cellIndex]))
+          || (rowIndex === this.cells.length - 1 && cell === row[cellIndex + 1])
         ) {
           return true;
         }
@@ -267,8 +267,8 @@ class Game {
     }
 
     if (
-      this.cells.every((row) => row.every((cell) => cell !== 0)) &&
-      checker === false
+      this.cells.every((row) => row.every((cell) => cell !== 0))
+      && checker === false
     ) {
       return 'lose';
     }
@@ -292,8 +292,8 @@ class Game {
     const secondStartCellIndex = this.getStartCell(secondStartRowIndex);
 
     if (
-      firstStartRowIndex === secondStartRowIndex &&
-      firstStartCellIndex === secondStartCellIndex
+      firstStartRowIndex === secondStartRowIndex
+      && firstStartCellIndex === secondStartCellIndex
     ) {
       return this.start();
     }
